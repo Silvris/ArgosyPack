@@ -1,0 +1,18 @@
+﻿<Window x:Class="ArgosyPack.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArgosyPack"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        Title="ArgosyPack" Height="550" Width="850">
+    <Grid>
+        <Button Height="50" Width="150" Content="Import Wems" Margin="571,50,79,334" Click="Import_Wems"></Button>
+        <Button Height="50" Width="150" Content="Export File" Margin="571,125,79,259" Click="Export_File"></Button>
+        <TreeView Height="225" Width="750" Margin="0,199,0,10"></TreeView>
+        <Label Content="Instructions:" FontSize="20" HorizontalAlignment="Left" Margin="50,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="Import wems with the 'Import Wems' button, and then edit the ID in the box below." Margin="50,105,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Export the NPCK file after wems have been imported." Margin="50,175,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
