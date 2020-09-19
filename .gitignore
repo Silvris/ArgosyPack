@@ -26,3 +26,7 @@ obj/Debug/netcoreapp3.1/MainWindow.g.cs
 obj/Debug/netcoreapp3.1/MainWindow.g.i.cs
 obj/project.assets.json
 obj/project.nuget.cache
+obj/Debug/netcoreapp3.1/ArgosyPack.assets.cache
+obj/Debug/netcoreapp3.1/ArgosyPack_MarkupCompile.i.cache
+obj/Debug/netcoreapp3.1/ArgosyPack_MarkupCompile.i.lref
+obj/Debug/netcoreapp3.1/MainWindow.g.i.cs
