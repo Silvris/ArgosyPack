@@ -29,8 +29,8 @@ namespace ArgosyPack
 
         public void ExportFile(string aFilePath)
         {
-            wemTableLength = wemCount * 24;
-            headerLength = (wemTableLength - 8) + 56;
+            wemTableLength = wemCount * 20;
+            headerLength = (wemTableLength) + 56;
             BinaryWriter bw = new BinaryWriter(File.Create(aFilePath));
             bw.Write(magic);
             bw.Write(headerLength);
@@ -47,6 +47,8 @@ namespace ArgosyPack
                 bw.Write(unknValue);
                 bw.Write(unknA);
                 bw.Write(Encoding.Unicode.GetBytes(audioLang));
+                bw.Write(false);
+                bw.Write(false);
             }
             bw.Write(Encoding.Unicode.GetBytes(SFX));
             bw.Write(false);
@@ -54,18 +56,19 @@ namespace ArgosyPack
             bw.Write(unkn10);
             bw.Write(wemCount);
             uint currentOffset = headerLength+4;
+            uint workingOffset = 0;
             foreach(Wem wem in WemList)
             {
                 bw.Write(wem.id);
                 bw.Write(1);
                 bw.Write(wem.length);
                 bw.Write(currentOffset);
+                workingOffset = (uint)bw.BaseStream.Position;
+                bw.Seek((int)currentOffset, SeekOrigin.Begin);
+                bw.Write(wem.file);
+                bw.Seek((int)workingOffset,SeekOrigin.Begin);
                 currentOffset += wem.length;
                 bw.Write(0);
-            }
-            foreach(Wem wem in WemList)
-            {
-                bw.Write(wem.file);
             }
             bw.Close();
         }
