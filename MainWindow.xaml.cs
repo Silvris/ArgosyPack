@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,16 +23,14 @@ namespace ArgosyPack
     /// </summary>
     public partial class MainWindow : Window
     {
-        public NPCKHeader npck = new NPCKHeader();
+        public static NPCKHeader npck = new NPCKHeader();
+        public NPCKViewModel viewModel = new NPCKViewModel(npck.WemList);
+        public int currentWemIndex = 0;
+
         public MainWindow()
         {
             InitializeComponent();
-            
-        }
-
-        private void On_Loaded()
-        {
-
+            WemView.ItemsSource = viewModel.wems;
         }
 
         private void Import_Wems(object sender, RoutedEventArgs e)
@@ -43,23 +42,28 @@ namespace ArgosyPack
             {
                 foreach(string fileName in openFile.FileNames)
                 {
-                    Wem newWem = MakeWem.MakeWems(fileName, new BinaryReader(File.Open(openFile.FileName,FileMode.Open)));
+                    Wem newWem = MakeWem.MakeWems(fileName, new BinaryReader(File.Open(fileName,FileMode.Open)), currentWemIndex);
                     npck.WemList.Add(newWem);
                     npck.wemCount++;
+                    currentWemIndex++;
+                    viewModel.wems.Add(newWem);
                 }
                 
             }
+            
+
         }
 
         private void Export_File(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "WWise Package file (*.npck, *.pck)|*.npck, *.pck";
+            saveFile.Filter = "WWise Package file (*.npck, *.pck)|*.npck";
             if (saveFile.ShowDialog() == true)
             {
                 npck.ExportFile(saveFile.FileName);
             }
             
         }
+
     }
 }

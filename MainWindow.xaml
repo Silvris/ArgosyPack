@@ -10,7 +10,25 @@
     <Grid>
         <Button Height="50" Width="150" Content="Import Wems" Margin="571,50,79,334" Click="Import_Wems"></Button>
         <Button Height="50" Width="150" Content="Export File" Margin="571,125,79,259" Click="Export_File"></Button>
-        <TreeView Height="225" Width="750" Margin="0,199,0,10"></TreeView>
+        <ListBox Name="WemView" Height="225" Width="750" Margin="0,199,0,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="750">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label  Content="Wem ID:"></Label>
+                        <TextBox Name="TextBox1" Margin="50,0,0,0" Text="{Binding id, Mode=TwoWay}" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="Wem Name:"></Label>
+                        <Label Grid.Column="1" Margin="75,0,0,0" Content="{Binding name}"></Label>
+                        <Label Grid.Column="2" Content="Wem Length:"></Label>
+                        <Label Grid.Column="2" Margin="75,0,0,0" Content="{Binding length}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Label Content="Instructions:" FontSize="20" HorizontalAlignment="Left" Margin="50,25,0,0" VerticalAlignment="Top"/>
         <Label Content="Import wems with the 'Import Wems' button, and then edit the ID in the box below." Margin="50,105,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="Export the NPCK file after wems have been imported." Margin="50,175,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>

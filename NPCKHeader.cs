@@ -67,7 +67,7 @@ namespace ArgosyPack
             {
                 bw.Write(wem.file);
             }
-
+            bw.Close();
         }
     }
 }

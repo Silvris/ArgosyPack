@@ -30,3 +30,6 @@ obj/Debug/netcoreapp3.1/ArgosyPack.assets.cache
 obj/Debug/netcoreapp3.1/ArgosyPack_MarkupCompile.i.cache
 obj/Debug/netcoreapp3.1/ArgosyPack_MarkupCompile.i.lref
 obj/Debug/netcoreapp3.1/MainWindow.g.i.cs
+Properties/PublishProfiles/FolderProfile.pubxml
+.vs/ArgosyPack/DesignTimeBuild/.dtbcache.v2
+ArgosyPack.csproj.user

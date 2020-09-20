@@ -8,14 +8,16 @@ namespace ArgosyPack
 {
     public class Wem
     {
-        public string name;
-        public uint id;
-        public uint length;
+        public int loadedId;
+        public string name { get; set; }
+        public uint id { get; set; }
+        public uint length { get; set; }
         public byte[] file;
 
-        public Wem(string aName, string aId, BinaryReader aFile)
+        public Wem(string aName, string aId, BinaryReader aFile, int loadId)
         {
-            name = aName;
+            loadedId = loadId;
+            name = Path.GetFileName(aName);
             id = Convert.ToUInt32(aId);
             length = (uint)aFile.BaseStream.Length;
             file = aFile.ReadBytes((int)length);
